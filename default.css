@@ -1,0 +1,65 @@
+body {
+	background-color: #323230;
+     }
+
+#main {
+margin: 0px auto;
+width: 1024px;
+height: auto;
+}
+
+#login {
+margin: 0px auto;
+width: 1024px;
+height: auto;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+#form {
+margin: 0px auto;
+width: 1024px;
+height: auto;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+label
+{
+width: 4em;
+float: left;
+text-align: right;
+margin-right: 0.5em;
+display: block
+}
+
+.submit input
+{
+margin-left: 4.5em;
+}
+input
+{
+color: #FFFFFF;
+background: #323230;
+border: 2px solid #ACCCF6
+}
+
+.submit input
+{
+color: #000;
+background: #FFA20F;
+}
+fieldset
+{
+border: 1px solid #000000;
+background: #ACCCF6;
+width: 20em
+}
+
+legend
+{
+color: #323230;
+background: #FFA20F;
+border: 1px solid #000;
+padding: 2px 6px
+} 

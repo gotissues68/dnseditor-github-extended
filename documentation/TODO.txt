@@ -1,0 +1,5 @@
+TODO List:
+
+Rewrite code base to use prepared statements
+Rebuild Authentication system and add fine grained ACLs
+Move away from sajax to a more modern and actively developed framework [ jQuery? ]
