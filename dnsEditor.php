@@ -1,15 +1,15 @@
 <?php
 session_start();
-date_default_timezone_set('America/New_York');
+
 include 'config.php';
 
 if (!empty($cfg_auth)) {
     if (empty($_SESSION[successful_auth])) {
-        header("");
+        header("Location: http://www.techiekb.com/dnsExtended/auth.php");
     }
 }
 
-require_once 'MDB2.php';
+require_once '/usr/share/pear/MDB2.php';
 $dsn = "$cfg_db_type://$cfg_db_user:$cfg_db_pass@$cfg_db_host/$cfg_db_name";
 $options = array(
     'debug' => 2,
@@ -44,7 +44,6 @@ function ToDBString($string, $isNumber = false)
         return "'" . $mdb2->escape(trim(strtolower($string))) . "'";
     }
 }
-
 // Main function to update table information
 
 function updateSerial($id)
@@ -58,7 +57,7 @@ function updateSerial($id)
     $row = $res->fetchRow(MDB2_FETCHMODE_ASSOC);
     $zone = $row[0];
     if ($zone) {
-        $res =& $mdb2->exec("UPDATE $cfg_db_table SET serial = " . date("U") . " WHERE zone='$zone' AND type='SOA'");
+        $res =& $mdb2->exec("UPDATE $cfg_db_table SET serial = " . date("U") . " WHERE zone='$zone' AND type='SOA';");
     } else {
         $errText .= "SQL Error: " . $res->getMessage() . "\r\n" . $res;
         return $errText;
@@ -98,7 +97,6 @@ function changeZone($sValue)
     $newText = getZone($sZone) . "~~|~~" . $zone . '~~|~~' . $errText;
     return $newText;
 }
-
 function addBatchRecords($zonesS)
 {
     $zones = explode("\n", $zonesS);
@@ -137,7 +135,6 @@ function addRecord($sValue)
     $sValue_array = explode("~~|~~", $sValue);
     return addRecordX($sValue_array[0], $sValue_array[1]);
 }
-
 function addRecordX($zone, $rtype)
 {
     global $user;
@@ -162,12 +159,12 @@ function addRecordX($zone, $rtype)
 
 // For some reason UCASE(ToDBString($rtype)) does not work on this query using Postgres so I have statically defined the SOA record type here
 
-// Adding hostmaster.$zone. meets the suggested record for the RNAME field. Not using the output of ToDBString means the input data can't be verified to be correct, however it screws up the query on Postgres as well. 
+// Adding hostmaster.$zone. meets the suggested record for the RNAME field. Not using the output of ToDBString means the input data can't be verified to be correct, however it screws up the query on Postgres as well.
 
                 if (!empty($user)) {
-                    $sql_string = "INSERT INTO $cfg_db_table (zone,host,type,data,ttl,refresh,retry,expire,minimum,serial,resp_person,owner)VALUES (" . ToDBString($zone) . ",'@','SOA','" . $primary_ns . "',86400,7200,3600,604800,3600," . date("U") . ",'hostmaster.$zone.','" . $user . "')";
+                    $sql_string = "INSERT INTO $cfg_db_table (zone,host,type,data,ttl,refresh,retry,expire,minimum,serial,resp_person,owner)VALUES (" . ToDBString($zone) . ",'@','SOA','" . $primary_ns . "',86400,7200,3600,604800,3600," . date("U") . ",'hostmaster.$zone.','" . $user . "');";
                 } else {
-                    $sql_string = "INSERT INTO $cfg_db_table (zone,host,type,data,ttl,refresh,retry,expire,minimum,serial,resp_person)VALUES (" . ToDBString($zone) . ",'@','SOA','" . $primary_ns . "',86400,7200,3600,604800,3600," . date("U") . ",'hostmaster')";
+                    $sql_string = "INSERT INTO $cfg_db_table (zone,host,type,data,ttl,refresh,retry,expire,minimum,serial,resp_person)VALUES (" . ToDBString($zone) . ",'@','SOA','" . $primary_ns . "',86400,7200,3600,604800,3600," . date("U") . ",'hostmaster');";
                 }
 
                 if (!zoneExists($zone)) {
@@ -221,7 +218,7 @@ function addRecordX($zone, $rtype)
                 break;
                 break;
             default:
-                $sql_string = "INSERT INTO $cfg_db_table (zone,host,type) VALUES (" . ToDBString($zone) . ",'@',UCASE(" . ToDBString($rtype) . "))";
+                $sql_string = "INSERT INTO $cfg_db_table (zone,host,type) VALUES (" . ToDBString($zone) . ",'@',UCASE(" . ToDBString($rtype) . "));";
                 if (zoneExists($zone)) {
                     $sql =& $mdb2->exec($sql_string);
 //          $err = $sql->getMessage();
@@ -267,7 +264,7 @@ function delZone($sValue)
     $sValue_array = explode("~~|~~", $sValue);
     $zone = $sValue_array[0];
     if (zoneExists($zone)) {
-        $sql =& $mdb2->exec("delete from $cfg_db_table where zone=" . ToDBString($zone) . "");
+        $sql =& $mdb2->exec("delete from $cfg_db_table where zone=" . ToDBString($zone) . ";");
         $err = $sql->getMessage;
     } else {
         $errText .= "Cannot delete zone: Zone does not exist.  (zone: " . $zone . ")\r\n";
@@ -293,7 +290,7 @@ function delRecord($sValue)
     $rtype = strtoupper($rtype);
     $id = $sValue_array[2];
     if (idExists($id)) {
-        $sql =& $mdb2->exec("delete from $cfg_db_table where id=" . ToDBString($id, true) . "");
+        $sql =& $mdb2->exec("delete from $cfg_db_table where id=" . ToDBString($id, true) . ";");
 //    $err = $sql->getMessage;
     } else {
         $errText .= "Record id does not exist.  (id: " . $id . ")\r\n";
@@ -331,7 +328,7 @@ function zoneExists($zone)
 {
     global $cfg_db_table;
     global $mdb2;
-    $sql =& $mdb2->query("select id from $cfg_db_table where type='SOA' and zone=" . ToDBString($zone) . "");
+    $sql =& $mdb2->query("select id from $cfg_db_table where type='SOA' and zone=" . ToDBString($zone) . ";");
 
 //  $err = $sql->getMessage();
     $rec = $sql->numRows();
@@ -359,7 +356,7 @@ function idExists($id)
 {
     global $cfg_db_table;
     global $mdb2;
-    $sql =& $mdb2->query("select id from $cfg_db_table where id=" . ToDBString($id, true) . "");
+    $sql =& $mdb2->query("select id from $cfg_db_table where id=" . ToDBString($id, true) . ";");
 //  $err = $sql->getMessage();
     $rec = $sql->numRows();
     return $rec > 0;
@@ -382,7 +379,6 @@ function getZone($zone)
     }
     return $html;
 }
-
 // functions for each record type
 function getSOARecord($zone)
 {
@@ -596,7 +592,7 @@ function getZoneList()
         stripslashes(extract($row));
         if (empty($data)) $data = $GLOBALS["DEFAULTVAL"];
 
-        $table .= "\'' . $zone . "');\" onmouseover=\"bgSwitch('on', this, 'Delete Zone: " . $zone . "');\" onmouseout=\"bgSwitch('off', this);\"><img src=\"delete.png\" border=\"0\" alt=\"Delete Zone\" /></span></td>\n";
+        $table .= "\''.$zone . "');\" onmouseover=\"bgSwitch('on', this, 'Delete Zone: " . $zone . "');\" onmouseout=\"bgSwitch('off', this);\"><img src=\"delete.png\" border=\"0\" alt=\"Delete Zone\" /></span></td>\n";
         $table .= "<td class=\"point\" id=\"" . $id . "__zone\" onmouseover=\"bgSwitch('on', this, 'Edit Zone: " . $zone . "');\" onmouseout=\"bgSwitch('off', this, '');\">\n";
         $table .= "<div onclick=\"editZone('" . $zone . "');\">" . $zone . "</div>\n";
         $table .= "</td>\n</tr>\n";
@@ -604,7 +600,6 @@ function getZoneList()
     return $table;
 
 }
-
 // sajax
 require_once("sajax.php");
 // $sajax_request_type = "POST";
@@ -646,10 +641,6 @@ sajax_handle_client_request();
 <?php
 sajax_show_javascript();
 ?>
-
-
-
-
 
 
 
@@ -886,37 +877,6 @@ sajax_show_javascript();
 
 
 
-<?php
-$auth_user = ucfirst($user);
-echo "<tr>";
-echo "<th colspan=1 valign=top align=left>";
-echo "Hi $auth_user";
-echo "</th>";
-echo "<td align=right>";
-echo "<form action=logout.php method=POST>";
-echo "<input id=cmdBtn1 type=submit value='Logout'>";
-echo "<input type=hidden name=LOGOUT>";
-echo "</form>";
-echo "</td>";
-echo "</tr>";
-
-echo "<tr>";
-echo "<th colspan=1 valign=top align=left>";
-echo "</th>";
-echo "<td align=right>";
-echo "<form action=backup.php method=POST>";
-echo "<input id=cmdBtn1 type=submit value='Backup DB'>";
-echo "<input type=hidden name=backup>";
-echo "</form>";
-echo "</td>";
-echo "</tr>";
-
-?>
-
-
-
-
-
 
 
 
@@ -925,7 +885,6 @@ echo "</tr>";
 <?php
 if (@$cfg_updateservers) {
     ?>
-
 
 <?php
 }
@@ -948,7 +907,7 @@ if (@$cfg_updateservers) {
         <td align="left" style="font-size: 11px">(1/line)</td>
         <th>
             <input type="button" class="cmdBtn" id="batchbtn" value="Add Zones"
-                   onClick="addZones();" onmouseover="bgSwitch(;'on', this, 'Add batch Zones');"
+                   onClick="addZones();" onmouseover="bgSwitch('on', this, 'Add batch Zones');"
                    onmouseout="bgSwitch('off', this, '');"/>
         </th>
     </tr>
@@ -961,12 +920,12 @@ if (@$cfg_updateservers) {
     </tbody>
 </table>
 <hr/>
-</div>
-<div id="zonelist_filter_div" onmouseover="bgSwitch(;'on', this, 'Filter zones based on text string');"
+    </div>
+<div id="zonelist_filter_div" onmouseover="bgSwitch('on', this, 'Filter zones based on text string');"
      onmouseout="bgSwitch('off', this, '');">
     Filter: <input name="zonemenu_filterable_filter" id="zonemenu_filterable_filter" type="text" value="" size="10"
                    maxlength="10"/>
-</div>
+    </div>
 <div id="zonelist_menu">
     <table class="zonemenu_filterable" id="zonemenu_filterable" border="0">
         <?php echo getZoneList(); ?>
@@ -980,8 +939,11 @@ if (@$cfg_updateservers) {
     </div>
 </div>
 </div>
-<div id="zoneinfo">
-    <div id="zone_edit_msg"><strong>Select a zone.</strong></div>
+<div id="zoneinfo"><strong><span style="vertical-align: top">Select a zone.</span></strong>
+
+    <div id="zone_edit_msg"></div>
+
+
 </div>
 </div>
 </body>

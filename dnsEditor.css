@@ -12,7 +12,7 @@ body, div, td, th {
 body {
     background: #FFF;
     background-attachment: fixed;
-    color: #596195;
+    color: #000;
     padding: 0px;
     margin: 0px;
 }
@@ -62,8 +62,8 @@ body {
 }
 /* Zones Menu */
 #zonelist {
-    border: 1px solid #ccc;
-    border-radius: 10px 10px 10px 10px;
+    # border: 1px solid #ccc;
+    border-radius: 20px 20px 20px 20px;
     color: #000;
     padding: 10px;
     background: #999BAA;
@@ -148,17 +148,18 @@ body {
 }
 #zoneinfo {
     # border: 1px solid #ccc;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 20px 20px 20px 20px;
     # border-left: 0px;
     padding: 10px;
     background: #999BAA;
     margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    text-align: center;
+    text
     height: auto;
     width: 768px;
     float: left;
-    position: relative;
 }
 
 .editable_table {
