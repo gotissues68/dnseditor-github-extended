@@ -971,14 +971,14 @@ if (@$cfg_updateservers) {
     <table class="zonemenu_filterable" id="zonemenu_filterable" border="0">
         <?php echo getZoneList(); ?>
     </table>
-</div>
+    </div>
 <div id="status_div">
     <div id="status_div_over">
         &nbsp;
     </div>
     <div id="status_div_ajax">
     </div>
-</div>
+    </div>
 </div>
 <div id="zoneinfo">
     <div id="zone_edit_msg"><strong>Select a zone.</strong></div>
