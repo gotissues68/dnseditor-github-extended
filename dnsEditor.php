@@ -928,8 +928,8 @@ sajax_handle_client_request();
         </div>
     </div>
 </div>
-<div id="zoneinfo">
-    <div id="zone_edit_msg"><strong>Select a zone.</strong></div>
+<div id="zoneinfo"><strong>Select a zone.</strong>
+    <div id="zone_edit_msg"></div>
 </div>
 </div>
 </body>
