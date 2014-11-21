@@ -72,7 +72,7 @@ body {
 	height: auto;
 	width: 350px;
 	float: left;
-	position:relative;
+	font-family: 'Roboto Condensed', sans-serif;
 }
 #zonelist_top {
 	margin-top: 0px;
@@ -103,7 +103,6 @@ body {
 	height: 330px;
 	width: 350px;
 	overflow: scroll;
-	border: 1px solid grey;
 }
 .zonemenu_filterable td {
 	padding: 0 0.5em;
@@ -146,18 +145,16 @@ body {
 	margin-right: auto;
 }
 #zoneinfo {
-#	border: 1px solid #ccc;
-	border-radius: 10px 10px 10px 10px; 
-#	border-left: 0px;
+	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
 	background: #999BAA;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: center;
-	width: 1024px;
+	width: 768px;
 	float: left;
-	position:relative;
+
 }
 
 .editable_table 
@@ -224,7 +221,7 @@ body {
 }
 
 #config_properties {
-	width: 320px;
+	width: 235px;
 	height: 50px;
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
@@ -238,7 +235,7 @@ body {
 }
 
 #dashboard_view {
-	width: 320px;
+	width: 235px;
 	height: 50px;
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
@@ -252,7 +249,7 @@ body {
 }
 
 #domain_view {
-	width: 320px;
+	width: 235px;
 	height: 50px;
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
