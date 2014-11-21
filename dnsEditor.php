@@ -609,8 +609,8 @@ sajax_handle_client_request();
 
 <html>
 <head>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <title>dnsEditor: Ajaxified</title>
-
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="en-us" />
     <meta name="ROBOTS" content="ALL" />
@@ -929,9 +929,15 @@ sajax_handle_client_request();
     </div>
 </div>
 <div id="config_properties">
-    <strong>Configuration</strong>
+    Configuration
 </div>
-<div id="zoneinfo"><strong>Select a zone.</strong>
+<div id="dashboard_view">
+    Dashboard Status
+</div>
+<div id="domain_view">
+    Domain Information
+</div>
+<div id="zoneinfo">Select a zone from the menu on the left.
     <div id="zone_edit_msg"></div>
 </div>
 </div>
