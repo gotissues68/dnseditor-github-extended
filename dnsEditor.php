@@ -929,7 +929,7 @@ sajax_handle_client_request();
     </div>
 </div>
 <div id="config_properties">
-    Configuration
+    <a href="#self" onClick="document.getElementById('zoneinfo').innerHTML = '<?php include 'config.php'; ?>';">Current Configuration</a>
 </div>
 <div id="dashboard_view">
     Dashboard Status
