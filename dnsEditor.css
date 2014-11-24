@@ -10,7 +10,7 @@ body, div, td, th {
 body {
 	background: #FFF;
 	background-attachment: fixed;
-	color: #596195;
+	color: #FFF1DC;
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Roboto Condensed', sans-serif;
@@ -65,7 +65,7 @@ body {
 	border-radius: 10px 10px 10px 10px;
 	color: #000;
 	padding: 10px;
-	background: #999BAA;
+	background: #88B293;
 	margin-top: 10px;
 	margin-left: 10px;
 	margin-bottom: 10px;
@@ -147,7 +147,7 @@ body {
 #zoneinfo {
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
-	background: #999BAA;
+	background: #88B293;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -225,7 +225,7 @@ body {
 	height: 50px;
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
-	background: #999BAA;
+	background: #88B293;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 2px;
@@ -239,7 +239,7 @@ body {
 	height: 50px;
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
-	background: #999BAA;
+	background: #88B293;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 2px;
@@ -253,7 +253,7 @@ body {
 	height: 50px;
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
-	background: #999BAA;
+	background: #88B293;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-bottom: 2px;
