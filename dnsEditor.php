@@ -583,7 +583,7 @@ function getZoneList() {
         stripslashes(extract($row));
         if (empty($data)) $data = $GLOBALS["DEFAULTVAL"];
 
-        $table .=  "<tr><td class=\"point_del\"><span class=\"del\" onclick=\"javascript:delZone('".$zone."');\" onmouseover=\"bgSwitch('on', this, 'Delete Zone: ".$zone."');\" onmouseout=\"bgSwitch('off', this);\"><img src=\"delete.png\" border=\"0\" alt=\"Delete Zone\" /></span></td>\n";
+        $table .=  "\''.$zone."');\" onmouseover=\"bgSwitch('on', this, 'Delete Zone: ".$zone."');\" onmouseout=\"bgSwitch('off', this);\"><img src=\"delete.png\" border=\"0\" alt=\"Delete Zone\" /></span></td>\n";
         $table .= "<td class=\"point\" id=\"".$id."__zone\" onmouseover=\"bgSwitch('on', this, 'Edit Zone: ".$zone."');\" onmouseout=\"bgSwitch('off', this, '');\">\n";
         $table .=  "<div onclick=\"editZone('".$zone."');\">".$zone."</div>\n";
         $table .= "</td>\n</tr>\n";
@@ -855,7 +855,7 @@ sajax_handle_client_request();
             }
         }
     </script>
-    <script type="text/javascript" src="fat.js"></script>
+    <script; type="text/javascript"; src="fat.js"></script>
     <style type="text/css">
 
     </style>
@@ -872,12 +872,12 @@ sajax_handle_client_request();
                 <th colspan="1" align="left">Zone List&nbsp;&nbsp;<a href="javascript:refreshZones();"><img src="refresh.png" border=0 alt="refresh" onmouseover="bgSwitch('on', this, 'Refresh Zone List');" onmouseout="bgSwitch('off', this, '');"/></a></th>
                 <td align="right">
                     <img src="loader.gif" style="display:none" id="addloader"/>
-                    <input type="button" class="cmdBtn" id="addbtn" value="Add Zone" onClick="javascript:addZone();" onmouseover="bgSwitch('on', this, 'Add a new Zone');" onmouseout="bgSwitch('off', this, '');"/>
+                    <input type="button" class="cmdBtn" id="addbtn" value="Add Zone" onClick="addZone();" onmouseover="bgSwitch('on', this, 'Add a new Zone');" onmouseout="bgSwitch('off', this, '');"/>
                     <?php
                     if (@$cfg_updateservers)
                     {
                         ?>
-                        <br><input class="cmdBtn" type="button" value="Update Servers" name="btn_updateServers" id="btn_updateServers" onclick="javascript:this.value='<img src=\"loadersmall.gif\"/> Updating...';x_updateServers('',updateServers_cb);" onmouseover="bgSwitch('on', this, 'Syncronize all DNS Servers');" onmouseout="bgSwitch('off', this, '');" />
+                        <br><input class="cmdBtn" type="button" value="Update Servers" name="btn_updateServers" id="btn_updateServers" onclick="this.value='<img src=\"loadersmall.gif\"/> Updating...';x_updateServers('',updateServers_cb);" onmouseover="bgSwitch('on', this, 'Syncronize all DNS Servers');" onmouseout="bgSwitch('off', this, '');" />
           <?php
           }
                     ?>
@@ -899,7 +899,7 @@ sajax_handle_client_request();
                 <td align="left" style="font-size: 11px">(1/line)</td>
                 <th>
                     <input type="button" class="cmdBtn" id="batchbtn" value="Add Zones"
-                           onClick="javascript:addZones();" onmouseover="bgSwitch('on', this, 'Add batch Zones');" onmouseout="bgSwitch('off', this, '');"/>
+                           onClick="addZones();" onmouseover="bgSwitch('on', this, 'Add batch Zones');" onmouseout="bgSwitch('off', this, '');"/>
                 </th>
             </tr>
             <tr>
@@ -929,7 +929,7 @@ sajax_handle_client_request();
     </div>
 </div>
 <div id="config_properties">
-    Current Configuration
+    Configuration
 </div>
 <div id="dashboard_view">
     Dashboard Status
